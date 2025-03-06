@@ -237,7 +237,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     SS_DOWN(X_LCTL)
                     SS_DOWN(X_LALT)
                     SS_DOWN(X_LSFT)
-					SS_UP(X_UP)
+					SS_TAP(X_UP)
+                    SS_UP(X_LCTL)
+                    SS_UP(X_LALT)
+                    SS_UP(X_LSFT)
 				);
 			}
 			break;
@@ -247,7 +250,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     SS_DOWN(X_LCTL)
                     SS_DOWN(X_LALT)
                     SS_DOWN(X_LSFT)
-					SS_UP(X_DOWN)
+					SS_TAP(X_DOWN)
+                    SS_UP(X_LCTL)
+                    SS_UP(X_LALT)
+                    SS_UP(X_LSFT)
+				);
+			}
+			break;
+		case M_MEH_LEFT:
+			if (record->event.pressed) {
+				SEND_STRING(
+                    SS_DOWN(X_LCTL)
+                    SS_DOWN(X_LALT)
+                    SS_DOWN(X_LSFT)
+					SS_TAP(X_LEFT)
+                    SS_UP(X_LCTL)
+                    SS_UP(X_LALT)
+                    SS_UP(X_LSFT)
+				);
+			}
+			break;
+		case M_MEH_RIGHT:
+			if (record->event.pressed) {
+				SEND_STRING(
+                    SS_DOWN(X_LCTL)
+                    SS_DOWN(X_LALT)
+                    SS_DOWN(X_LSFT)
+					SS_TAP(X_RIGHT)
+                    SS_UP(X_LCTL)
+                    SS_UP(X_LALT)
+                    SS_UP(X_LSFT)
 				);
 			}
 			break;
