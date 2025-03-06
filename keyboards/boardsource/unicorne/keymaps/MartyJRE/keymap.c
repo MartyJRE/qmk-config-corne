@@ -97,6 +97,10 @@ enum {
     M_PARAM,
     M_MET,
     M_INL,
+	M_CLONE_UP,
+	M_CLONE_DOWN,
+	M_MEH_RIGHT,
+	M_MEH_LEFT,
 };
 
 tap_dance_action_t tap_dance_actions[] = {
@@ -120,7 +124,6 @@ tap_dance_action_t tap_dance_actions[] = {
         [TD_N] = ACTION_TAP_DANCE_TAP_HOLD(KC_N, KC_LGUI),
         [TD_M] = ACTION_TAP_DANCE_TAP_HOLD(KC_M, RGUI(KC_M)),
         [TD_SLASH] = ACTION_TAP_DANCE_TAP_HOLD(KC_SLASH, RGUI(KC_SLASH)),
-//        [TD_DEL] = ACTION_TAP_DANCE_DOUBLE(KC_D, LGUI(KC_BACKSPACE))
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -228,6 +231,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 );
             }
             break;
+		case M_CLONE_UP:
+			if (record->event.pressed) {
+				SEND_STRING(
+                    SS_DOWN(X_LCTL)
+                    SS_DOWN(X_LALT)
+                    SS_DOWN(X_LSFT)
+					SS_UP(X_UP)
+				);
+			}
+			break;
+		case M_CLONE_DOWN:
+			if (record->event.pressed) {
+				SEND_STRING(
+                    SS_DOWN(X_LCTL)
+                    SS_DOWN(X_LALT)
+                    SS_DOWN(X_LSFT)
+					SS_UP(X_DOWN)
+				);
+			}
+			break;
         case TD(TD_Q):
         case TD(TD_W):
         case TD(TD_R):
@@ -284,9 +307,9 @@ LAYOUT_split_3x6_3(
 ),
 [TRI] =
 LAYOUT_split_3x6_3(
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LGUI, RALT(RGUI(KC_LEFT)), LALT(LGUI(KC_RIGHT)), KC_TAB, KC_TRNS, LALT(KC_ENTER), LALT(LSFT(KC_ENTER)), KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, CW_TOGG, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, M_CLONE_UP, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS, M_MEH_LEFT, KC_LGUI, RALT(RGUI(KC_LEFT)), LALT(LGUI(KC_RIGHT)), KC_TAB, M_MEH_RIGHT, LALT(KC_ENTER), LALT(LSFT(KC_ENTER)), KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS, CW_TOGG, KC_TRNS, KC_TRNS, KC_TRNS, M_CLONE_DOWN, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 [REF] =
