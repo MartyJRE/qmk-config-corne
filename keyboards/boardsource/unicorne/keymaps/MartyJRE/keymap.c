@@ -9,24 +9,6 @@ enum {
     REF
 };
 
-// caps word
-bool caps_word_press_user(uint16_t keycode) {
-    switch (keycode) {
-        case KC_A ... KC_Z:
-        case KC_MINS:
-            add_weak_mods(MOD_BIT(KC_LSFT));
-            return true;
-        case KC_1 ... KC_0:
-        case KC_BSPC:
-        case KC_DEL:
-        case KC_UNDS:
-
-            return true;
-        default:
-            return false;
-    }
-}
-
 // tap dances
 typedef struct {
     uint16_t tap;
@@ -86,7 +68,6 @@ enum {
     TD_N,
     TD_M,
     TD_SLASH,
-//    TD_DEL
 };
 
 enum {
@@ -320,7 +301,7 @@ keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 LAYOUT_split_3x6_3(
         KC_DEL, TD(TD_Q), TD(TD_W), KC_E, TD(TD_R), TD(TD_T), LT(REF, KC_Y), KC_U, KC_I, KC_O, KC_P, KC_BACKSLASH,
         MT(MOD_LCTL, KC_ESCAPE), TD(TD_A), TD(TD_S), TD(TD_D), TD(TD_F), TD(TD_G), TD(TD_H), TD(TD_J), TD(TD_K), KC_L, KC_SCLN, KC_QUOT,
-        KC_LSFT, TD(TD_Z), TD(TD_X), TD(TD_C), TD(TD_V), TD(TD_B), TD(TD_N), TD(TD_M), KC_COMM, KC_DOT, TD(TD_SLASH), KC_RIGHT_CTRL,
+        KC_LSFT, TD(TD_Z), TD(TD_X), TD(TD_C), TD(TD_V), TD(TD_B), TD(TD_N), TD(TD_M), KC_COMM, KC_DOT, TD(TD_SLASH), KC_RSFT,
         TL_LOWR, MT(MOD_RGUI, KC_SPC), KC_BACKSPACE, MT(MOD_LGUI, KC_TAB), MT(MOD_LALT, KC_ENTER), TL_UPPR
 ),
 [LOWER] =
@@ -341,12 +322,12 @@ LAYOUT_split_3x6_3(
 LAYOUT_split_3x6_3(
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, M_CLONE_UP, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, M_MEH_LEFT, KC_LGUI, RALT(RGUI(KC_LEFT)), LALT(LGUI(KC_RIGHT)), KC_TAB, M_MEH_RIGHT, LALT(KC_ENTER), LALT(LSFT(KC_ENTER)), KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS, CW_TOGG, KC_TRNS, KC_TRNS, KC_TRNS, M_CLONE_DOWN, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, M_CLONE_DOWN, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 [REF] =
 LAYOUT_split_3x6_3(
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, M_REN, KC_TRNS, KC_TRNS, KC_TRNS, M_INL, KC_TRNS, M_PARAM, KC_TRNS,
+        KC_TRNS, KC_TRNS, QK_CAPS_WORD_TOGGLE, KC_TRNS, M_REN, KC_TRNS, KC_TRNS, KC_TRNS, M_INL, KC_TRNS, M_PARAM, KC_TRNS,
         KC_TRNS, KC_TRNS, M_SIG, KC_TRNS, M_FIELD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, M_CONST, KC_TRNS, KC_TRNS, KC_TRNS, M_MET, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
