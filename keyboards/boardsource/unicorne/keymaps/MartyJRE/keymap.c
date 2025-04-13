@@ -1,5 +1,4 @@
 #include <keyboard.h>
-
 #include <process_tap_dance.h>
 #include <quantum.h>
 #include <matrix.h>
@@ -333,7 +332,7 @@ LAYOUT_split_3x6_3(
 ),
 [REF] =
 LAYOUT_split_3x6_3(
-        KC_TRNS, KC_TRNS, QK_CAPS_WORD_TOGGLE, KC_TRNS, M_REN, KC_TRNS, KC_TRNS, KC_TRNS, M_INL, KC_TRNS, M_PARAM, KC_TRNS,
+        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, M_REN, KC_TRNS, KC_TRNS, KC_TRNS, M_INL, KC_TRNS, M_PARAM, KC_TRNS,
         KC_TRNS, KC_TRNS, M_SIG, KC_TRNS, M_FIELD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, M_CONST, KC_TRNS, KC_TRNS, KC_TRNS, M_MET, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
