@@ -11,7 +11,7 @@
 
 // Make Shift and other modifier keys more responsive
 #define PERMISSIVE_HOLD
-#define IGNORE_MOD_TAP_INTERRUPT
+//#define IGNORE_MOD_TAP_INTERRUPT
 
 // Increase the debounce time for better key recognition
 #define DEBOUNCE 10
