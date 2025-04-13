@@ -1,4 +1,8 @@
-#include QMK_KEYBOARD_H
+#include <keyboard.h>
+
+#include <process_tap_dance.h>
+#include <quantum.h>
+#include <matrix.h>
 
 // layers
 enum {
@@ -25,7 +29,7 @@ void tap_dance_tap_hold_reset(tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void tap_dance_tap_hold_finished(tap_dance_state_t *state, void *user_data) {
+void tap_dance_tap_hold_finished(const tap_dance_state_t *state, void *user_data) {
     tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
 
     if (state->pressed) {
@@ -47,7 +51,7 @@ void tap_dance_tap_hold_finished(tap_dance_state_t *state, void *user_data) {
     { .fn = {NULL, tap_dance_tap_hold_finished, tap_dance_tap_hold_reset}, .user_data = (void *)&((tap_dance_tap_hold_t){tap, hold, 0}), }
 
 enum {
-    TD_Q = 0,
+    TD_Q = SAFE_RANGE,
     TD_W,
     TD_R,
     TD_T,
@@ -71,7 +75,7 @@ enum {
 };
 
 enum {
-    M_REN = SAFE_RANGE,
+    M_REN = TD_SLASH + 1,
     M_SIG,
     M_CONST,
     M_FIELD,
@@ -107,7 +111,7 @@ tap_dance_action_t tap_dance_actions[] = {
         [TD_SLASH] = ACTION_TAP_DANCE_TAP_HOLD(KC_SLASH, RGUI(KC_SLASH)),
 };
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_user(const uint16_t keycode, const keyrecord_t *record) {
     tap_dance_action_t *action;
 
     switch (keycode) {
@@ -286,9 +290,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case TD(TD_SLASH):
             action = &tap_dance_actions[QK_TAP_DANCE_GET_INDEX(keycode)];
             if (!record->event.pressed && action->state.count && !action->state.finished) {
-                tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)action->user_data;
+                const tap_dance_tap_hold_t *tap_hold = action->user_data;
                 tap_code16(tap_hold->tap);
             }
+            break;
+        default:
             break;
     }
     return true;
@@ -296,7 +302,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 // layout
 const uint16_t PROGMEM
-keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+keymaps[][matrix_rows][matrix_cols] = {
 [BASE] =
 LAYOUT_split_3x6_3(
         KC_DEL, TD(TD_Q), TD(TD_W), KC_E, TD(TD_R), TD(TD_T), LT(REF, KC_Y), KC_U, KC_I, KC_O, KC_P, KC_BACKSLASH,
