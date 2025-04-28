@@ -1,7 +1,4 @@
 #include <keyboard.h>
-#include <process_tap_dance.h>
-#include <quantum.h>
-#include <matrix.h>
 
 // layers
 enum {
