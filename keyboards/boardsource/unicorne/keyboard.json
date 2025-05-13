@@ -52,11 +52,9 @@
         ]
     },
     "rgb_matrix": {
-        "animations": {
-            "solid_color": true
-        },
+        "animations": {},
         "default": {
-            "animation": "solid_color"
+            "on": false
         },
         "max_brightness": 150,
         "split_count": [27, 27],
@@ -116,8 +114,7 @@
             {"matrix": [4, 0], "x": 0, "y": 7, "flags": 1},
             {"matrix": [5, 0], "x": 0, "y": 24, "flags": 1},
             {"matrix": [6, 0], "x": 0, "y": 41, "flags": 1}
-        ],
-        "sleep": true
+        ]
     },
     "community_layouts": ["split_3x6_3"],
     "layout_aliases": {

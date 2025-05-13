@@ -16,15 +16,7 @@ typedef struct {
     uint16_t held;
 } tap_dance_tap_hold_t;
 
-#ifdef RGB_MATRIX_ENABLE
-void keyboard_post_init_user(void) {
-    rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR); // Default animation
-    rgb_matrix_sethsv(HSV_GOLD); // Replace HSV_RED with your desired color
-}
-#endif
-
-
-void tap_dance_tap_hold_reset(tap_dance_state_t *state __attribute__((unused)), void *user_data) {
+void tap_dance_tap_hold_reset(tap_dance_state_t *state, void *user_data) {
     tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
 
     if (tap_hold->held) {
@@ -59,6 +51,7 @@ enum {
     TD_W,
     TD_R,
     TD_T,
+    TD_Y,
     TD_A,
     TD_S,
     TD_D,
